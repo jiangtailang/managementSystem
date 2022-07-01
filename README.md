@@ -44,3 +44,4 @@
    permission.js          ：与导航守卫相关
    settings               ：项目配置文件
    .env.development       
+   .env.production       

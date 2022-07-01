@@ -1,9 +1,10 @@
 <template>
   <div class="login-container">
+    <!-- el-form组件：elementUI插件里面的一个组件，经常展示表单元素。model：用于收集表单数据，rules：表单验证规则 -->
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">登录</h3>
       </div>
 
       <el-form-item prop="username">
@@ -41,7 +42,7 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
 
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
@@ -58,6 +59,7 @@ import { validUsername } from '@/utils/validate'
 export default {
   name: 'Login',
   data() {
+    // 这里面进行表单验证，验证用户名与密码操作
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'))
@@ -105,12 +107,19 @@ export default {
         this.$refs.password.focus()
       })
     },
+    // 登录业务：发请求，带着用户名与密码给服务器（成功与失败）
     handleLogin() {
+      // 这里是在验证表单元素（用户名与密码）是否符合规则
       this.$refs.loginForm.validate(valid => {
+        // 如果符合验证规则
         if (valid) {
+          // 按钮会有一个loading效果
           this.loading = true
+          // 派发一个actions：user/login，带着用户名与密码的载荷
           this.$store.dispatch('user/login', this.loginForm).then(() => {
+            // 登录成功进行路由跳转
             this.$router.push({ path: this.redirect || '/' })
+            // loading效果结束
             this.loading = false
           }).catch(() => {
             this.loading = false
