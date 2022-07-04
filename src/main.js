@@ -13,7 +13,8 @@ import store from './store'
 import router from './router'
 // 引入相关API相关的接口
 import API from '@/api'
-
+// 引入全局组件
+import CategorySelect from '@/components/CategorySelect'
 import '@/icons' // icon
 import '@/permission' // permission control
 
@@ -39,6 +40,8 @@ Vue.config.productionTip = false
 
 // 任意组件可以使用API相关接口
 Vue.prototype.$API = API
+    // 注册全局组件
+Vue.component(CategorySelect.name, CategorySelect)
 
 new Vue({
     el: '#app',
