@@ -15,6 +15,8 @@ import router from './router'
 import API from '@/api'
 // 引入全局组件
 import CategorySelect from '@/components/CategorySelect'
+import HintButton from '@/components/HintButton'
+
 import '@/icons' // icon
 import '@/permission' // permission control
 
@@ -42,6 +44,7 @@ Vue.config.productionTip = false
 Vue.prototype.$API = API
     // 注册全局组件
 Vue.component(CategorySelect.name, CategorySelect)
+Vue.component(HintButton.name, HintButton)
 
 new Vue({
     el: '#app',

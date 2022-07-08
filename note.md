@@ -38,6 +38,7 @@ http://39.98.123.211:8216/swagger-ui.html
         ---MessageBox弹框
             ---点击确认删除按钮 -> 发请求删除品牌 -> 弹出消息：删除成功 -> 发请求获取最新数据
             ---点击取消删除按钮 -> 弹出消息：已取消删除
+
 ## 平台属性管理
     1.平台属性管理的三级联动静态组件
         ---card卡片、Form行内表单
@@ -102,3 +103,67 @@ http://39.98.123.211:8216/swagger-ui.html
     17.按钮与三级联动之间可操作性
         ---当展示属性信息的时候，isShowTable为true，三级联动可操作
         ---当编辑属性信息的时候，isShowTable为false，三级联动不可操作
+    18.总结：
+        ---通过isShowTable切换‘展示平台属性模式与编辑某一属性信息模式’
+        ---展示平台属性模式，通过三级联动的ID获取平台属性列表attrList，展示平台属性列表:data='categoryId.category3Id?attrList:[]'
+        ---编辑某一属性信息模式
+            ---属性 v-model="attrInfo.attrName"
+            ---属性值 展示属性值列表:data="attrInfo.attrValueList"
+                ---添加 attrInfo.attrValueList.push({ attrId:this.attrInfo.id , valueName:"" , flag:true })
+                ---编辑 把row（attrList.attrInfo）深拷贝给attrInfo
+                ---通过flag切换‘查看与编辑模式’
+                    ---查看模式
+                    ---编辑模式
+
+## Spu管理
+    1.Spu模块介绍
+        ---Spu可以理解为类 Sku可以理解为实例
+    2.完成Spu管理模块静态组件
+        ---复用CategorySelect三级联动组件、封装HintButton为全局组件，pagination分页器...
+    3.完成Spu列表数据展示
+        ---书写相关展示Spu列表接口
+    4.完成SPU管理内容切换
+        ---展示SPU列表结构
+        ---添加SPU|修改SPU
+        ---展示添加SKU结构
+    5.完成SpuForm静态
+    6.SpuForm业务的分析
+        ---获取某一个SPU信息
+        ---品牌的数据需要发请求
+        ---获取SPU图片
+        ---获取平台中全部的销售属性（3个）
+    7.完成SpuForm获取服务器数据的操作
+        ---SpuForm子组件发请求
+            ---不能书写在mounted里面，因为每一次显示SpuForm子组件的时候，都会发四个请求
+            ---v-show只是控制SpuForm子组件显示与隐藏，SpuForm并没有卸载，导致mounted只能执行一次
+    8.SpuForm组件数据展示与收集数据
+    9.SpuForm销售属性的数据展示
+        ---计算未选择的销售属性
+            ---整个项目当中销售属性saleAttrList一共三个：颜色、尺码、版本
+            ---当前服务器获取某一spu自己的销售属性spuInfo.spuSaleAttrList
+            ---通过过滤filter计算
+        ---属性值展示：tag动态编辑标签
+    10.完成SpuForm照片墙图片的收集
+        ---照片墙何时收集数据
+            ---预览照片墙的时候，显示大的图片的时候，不需要收集数据【数据已经有了】
+            ---照片墙在删除图片的时候，需要收集数据
+            ---照片墙在添加图片的时候，需要收集数据
+    11.完成添加属性的操作
+        ---收集哪些数据？baseSaleAttrId、saleAttrName、spuSaleAttrValueList
+        ---在什么时候收集数据？点击添加属性按钮的时候
+        ---收集到哪里？把数据收集到spuInfo.spuSaleAttrList中
+    12.销售属性值展示与收集
+        ---tag动态编辑标签
+        ---this.$set(row,'inputVisible',true) 实现input与button切换
+        ---属性值不能为空！属性值不能重复！
+    13.完成删除销售属性与销售属性值操作
+    14.完成SpuForm组件的保存操作
+        ---整理参数
+            ---整理SpuImageList中的参数
+        ---保存成功后，发请求，返回展示spu列表模式
+            ---如果是添加，停留在第一页；如果是编辑，停留在当前页
+    15.完成添加Spu的业务
+        ---整理参数时需要category3Id
+        ---点击保存或取消时，都要先清空数据，避免下次添加spu时还有数据
+    16.完成删除Spu业务
+        ---删除时，展示spu个数大于1时，停留在当前页，小于1时，留在上一页

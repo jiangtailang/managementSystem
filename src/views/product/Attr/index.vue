@@ -83,7 +83,7 @@ export default {
       },
       // 平台属性列表
       attrList:[],
-      // ‘查看模式与编辑模式’切换
+      // ‘展示平台属性模式与编辑某一属性信息模式’切换
       isShowTable:true,
       // 收集新增属性|修改属性信息
       attrInfo:{
@@ -135,7 +135,7 @@ export default {
     },
     // 添加属性按钮的回调
     addAttr() {
-      // 切换table显示与隐藏
+      // 切换到编辑某一平台属性信息模式
       this.isShowTable=false
       // 清除数据，收集三级分类的id
       this.attrInfo={
@@ -147,7 +147,7 @@ export default {
     },
     // 编辑属性按钮
     editAttr(row) {
-      // 切换到编辑属性视图
+      // 切换到编辑某一平台属性信息模式
       this.isShowTable=false
       // 将选中的属性赋值给attrInfo
       // 由于数据结构当中存在对象里面套数组，数组里面有套对象，因此需要使用深拷贝解决问题
