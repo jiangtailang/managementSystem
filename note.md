@@ -206,3 +206,13 @@ http://39.98.123.211:8216/swagger-ui.html
                 ---less      /deep/
                 ---scss      ::v-deep
 
+## 首页
+    1.Layout布局、Card卡片、Tabs标签页、DatePicker日期选择器、Dropdown下拉菜单、Table可排序的表格、Pagination分页
+    2.上面的Card组件
+        ---折线图、柱状图、横向柱状图
+    3.中间的Sale组件
+        ---折线图
+    4.下面的Observe组件
+        ---折线图、饼状图
+    5.echarts数据可视化
+    6.mock数据
