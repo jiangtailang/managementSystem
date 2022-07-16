@@ -20,7 +20,7 @@ export default {
     data() {
         return {
             radioValue:'线上',
-            myCharts:null
+            myCharts:null,
         }
     },
     computed:{
@@ -35,6 +35,45 @@ export default {
                 },
                 dataset:{
                     source:value=="线上"?this.saleRank.online:this.saleRank.shop
+                }
+            })
+        },
+        saleRank() {
+            this.myCharts.setOption({
+                title:{
+                    text:'',
+                    subtext:undefined,
+                    subtextStyle:{
+                        fontSize:'18px'
+                    },
+                    top:'center',
+                    left:'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                series: [
+                    {
+                    name: 'Access From',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        borderRadius: 10,
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    },
+                    label: {
+                        show: true,
+                        position: 'outside'
+                    },
+                    labelLine: {
+                        show: true
+                    },
+                    }
+                ],
+                dataset:{
+                    source: this.saleRank.online
                 }
             })
         }
@@ -75,7 +114,7 @@ export default {
                 }
             ],
             dataset:{
-                source: this.saleRank.online
+                source: []
             }
         })
         // 绑定事件

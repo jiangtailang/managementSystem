@@ -80,7 +80,8 @@ export default {
         password: '111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        username: [{ required: true, trigger: 'blur', validator: true }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
